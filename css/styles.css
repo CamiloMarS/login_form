@@ -1,0 +1,171 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+header{
+    position: fixed;
+    width: 100%;
+}
+header nav{
+    background: rgba(63, 84, 134, 0.8);
+    display: block;
+    margin: 0 auto;
+    height: 3.5rem;
+    width: 100%; 
+    padding:1rem;
+}
+
+a{
+    text-decoration:none;
+    color:#fff;
+    text-shadow:2px 1px 1px #000;
+    vertical-align: middle;
+}
+
+.logo{
+    float: left;
+    color:#fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow:3px 1px 1px #000;
+    vertical-align:middle;
+}
+.navList{
+    float: left;
+    list-style: none;
+    margin-left: 2rem;
+}
+.navList li{
+    display: inline-block;
+    margin: 0 0.5rem;
+}
+u.navList li:hover{
+    background:rgba(0,0,0,.6);
+}
+.OptionForm{
+    background: transparent;
+    color:#fff;
+    font-size:25px;
+    float: right;
+    right:1rem;
+    padding:0 2rem;
+    text-align:center;
+    top: 0;
+    position: relative;
+}
+.OptionForm > ul{
+    position: absolute;
+    display: none;
+    margin: 0;
+    width: 100%;
+    list-style: none;
+}
+
+#abrir{
+    width:100%;
+    height: 100%;
+    padding:5px;
+   background:blue;
+   color:#fff;
+   border: 0;
+}
+/**
+* Seccion para el formulario dinámico
+*/
+.secciones-principales{
+  width: 100%;
+  height:100vh;
+  background-image: url(https://s3-us-west-2.amazonaws.com/prod.retreat.guru/images/161193/slide/bg-true-spec-golf-location-geneva.jpg);
+  background-size: cover;
+  padding:4rem 0;/*Para que se coloque debajo del header*/
+}
+
+.article-form-login{
+    position: absolute;
+    background: rgba(0,0, 0, 0.473);
+    display: none;
+    margin: 0 auto;
+    width:35%;
+    height:45vh;
+    text-align: center;
+    left:32%;
+    top:25vh;
+    border-radius:30px;
+}
+.article-form-login > h1{
+    padding-top:3px;
+    color:#fff;
+    text-align: center;
+    font-size: 28px;   
+}
+.form-login{
+    position:relative;
+    /*background:red;*/
+    width:100%;
+    height:50vh;
+}
+.inputs-style{
+    width:80%;
+    padding:.5rem;
+    margin:10px auto;
+    border-radius:30px;
+    border: 1px solid #fff;
+    box-shadow:1px 1px 2px 1px;
+    font-size:17px;
+    color:rgba(12, 160, 224, 0.897);
+    opacity: .6;
+}
+
+.btns-form{
+    background: rgba(12, 161, 224, 0.7);
+    height: 30px;
+    margin: .5rem 0;
+    width: 6rem;
+    color: #fff;
+    border: 1px solid transparent;
+}
+.pngInfo{
+    display: none;
+    width: 30px;
+    height: 30px;
+    float: right;
+    position: absolute;
+    right: 2%;
+}
+.primerSpan{
+    top: 4.5%;
+}
+.segundoSpan{
+    top: 23%;
+}
+.tercerSpan{
+    top: 41%;
+}
+.img-validacion{
+    width: 100%;
+    height: 100%;
+}
+
+/************** Bienvenida ************/
+.bienvenida{
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.divBienvenida{
+    background: rgba(0,0,0,.1);
+    text-align: center;
+}
+.divBienvenida>span{
+    color:#fff;
+    font-size: 2rem;
+    font-weight: bolder;
+    text-shadow: 2px 1px 1px #000;
+}
+.img_bienvenido{
+    width: 100%;
+}

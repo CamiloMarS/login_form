@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Principal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/styles.css" />
+</head>
+<body>
+     <main>
+        <header>
+            <nav>
+                <a href="#">
+                    <img src="./js/" alt="Sciars-Developer" class="logo">
+                </a>
+                <ul class="navList">
+                    <li><a href="#">&#8517;Elemento1</a></li>
+                    <li><a href="#">Elemento2</a></li>
+                    <li><a href="#">Elemento3</a></li>
+                    <li><a href="#">Elemento4</a></li>
+                    <li><a href="#">Elemento5</a></li>
+                </ul>
+                <a href="#" class="OptionForm">
+                    <span class="avatar-img">
+                        &#8803;
+                    </span>
+                    <ul>
+                        <li><button id="abrir">Login</button></li>
+                    </ul>
+                </a>
+            </nav>
+            <hr class="linea">
+        </header>
+         <section class="secciones-principales">
+            <article class="article-form-login">
+                <h1>Formulario</h1>
+                <div class="form-login">
+                     <div>
+                     <input class="inputs-style" type="text" id="txtUser" placeholder="Aquí mi de usuario" title="El nombre de usuario no debe comenzar ni finalizar con un punto">
+                     <span class="pngInfo primerSpan"><img class="img-validacion" id="imgUsername" src="./media/checked.png"></span>
+                     </div>
+                     <div>
+                     <input class="inputs-style" type="email" name="txtemail" id="txtemail" placeholder="micorreo@dominio.com" title="Dirección de url incorrecta, recuerda que debe ser de esta forma: correo@dominio.com">
+                     <span class="pngInfo segundoSpan"><img class="img-validacion" id="imgEmail" src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png"></span>
+                     </div>
+                     <div>
+                     <input class="inputs-style" type="password" name="txtpassword" id="txtpassword" placeholder="*******" title="El password debe contener numeros, letras mayúsculas y minúsculas de entre 4 a 8 caracteres">
+                     <span class="pngInfo tercerSpan"><img class="img-validacion" id="imgPassword" src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png"></span>
+                     </div>
+                     <div>
+                            ¿Recordarme? <input type="checkbox" name="recordarDatos" id="recordarDatos"><br/>
+                            <button class="btns-form" id="btnCancelar">Cancelar</button>
+                            <button class="btns-form" id="btnAcceder">Entrar</button>
+                     </div>
+                </div>
+            </article>
+            <article class="bienvenida">
+                
+                <div class="divBienvenida">
+                    <span>Bienvenidos a esta Web</span>
+                    <img class="img_bienvenido" src="https://vignette.wikia.nocookie.net/welcome-to-bloxburg/images/7/74/Charizard_shake_butt.gif/revision/latest?cb=20180216200936" alt="Bienvenid@s ">
+                </div>
+            </article>
+         </section>
+     </main>
+     <script src="./js/principal.js"></script>
+</body>
+</html> 
