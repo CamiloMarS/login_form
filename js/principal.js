@@ -1,10 +1,19 @@
 //Cuando se ha cargado el DOM
-if(document.addEventListener){
-    document.addEventListener("DOMContentLoaded", function(e){
-        console.log("El DOM está listo!");
-        myFunction.constructor();
-    },false);
-}
+(function(){
+    if(document.addEventListener){
+        document.addEventListener("DOMContentLoaded", function(e){
+            console.log("El DOM está listo!");
+            //Mostrar mensaje de bienvenida si el usuario ya se registro
+            if(localStorage.getItem("datos_login")){
+                document.querySelector(".article-form-login").style.display="none";
+                document.querySelector(".bienvenida").style.display = "flex";
+                console.log(localStorage.getItem("datos_login"));
+            }else{
+                myFunction.constructor();
+            }
+        },false);
+    }
+}());
 
 const myFunction ={
     constructor: function(){
@@ -50,16 +59,6 @@ const myFunction ={
                 console.log("Limpiar cajas de texto y cerrar form");
             }
         });
-    },
-    validarFormulario: function(){
-        let txtUser = document.querySelector("#txtUser"),
-            txtemail = document.querySelector("#txtemail"),
-            txtpassword = document.querySelector("#txtpassword");
-            
-        if(txtUser.value!==""){
-            console.log("Chido");
-        }
-
     }
 };
 
@@ -212,6 +211,14 @@ const operacionesForm = {
                boton.style = "background:rgba(14, 209, 14, 0.7);"
                boton.disabled = false;
                boton.addEventListener("click", function(e){
+                   if(document.querySelector("#recordarDatos").checked && typeof(Storage) !== "undefined"){
+                        let datos_login = JSON.stringify({
+                                usuario: document.getElementById("txtUser").value,
+                                email: document.getElementById("txtemail").value,
+                                password: document.getElementById("txtpassword").value
+                        });
+                        localStorage.setItem("datos_login",datos_login);
+                    }
                     content_bienvenida.show();
                });
             }
