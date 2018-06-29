@@ -1,4 +1,4 @@
-//Cuando se ha cargado el DOM
+//Cuando se ha cargado el DOM, se cargan las funciones
 (function(){
     if(document.addEventListener){
         document.addEventListener("DOMContentLoaded", function(e){
@@ -6,11 +6,25 @@
             //Mostrar mensaje de bienvenida si el usuario ya se registro
             if(localStorage.getItem("datos_login")){
                 document.querySelector(".article-form-login").style.display="none";
+                document.querySelector("#abrir").style.display="none";
+                //Agregar boton de salir
+                let ad = document.querySelector(".miList"); 
+                let li = document.createElement("li");
+                let buttonSalir = document.createElement("button");
+                    buttonSalir.setAttribute("id", "salirForm");
+                    buttonSalir.innerHTML = "Logout";
+                    buttonSalir.addEventListener("click", function(e){
+                        //localStorage.getItem("datos_login")
+                        let confirmacion = confirm("¿Salir y borrar datos?");
+                        if(confirmacion){
+                            localStorage.clear();
+                        }
+                    });
+                li.appendChild(buttonSalir);
+                ad.appendChild(li);
                 document.querySelector(".bienvenida").style.display = "flex";
-                console.log(localStorage.getItem("datos_login"));
-            }else{
-                myFunction.constructor();
             }
+            myFunction.constructor();
         },false);
     }
 }());
@@ -21,7 +35,7 @@ const myFunction ={
         this.openForm();
         this.cancelarForm();
     },
-    openOptions: function(){
+    openOptions: function(){//Desplegar formulario
         let btn = document.querySelector(".OptionForm");//Boton para desplegar el form
         let contandor = 0;
         btn.addEventListener("click", function(e){
@@ -65,16 +79,16 @@ const myFunction ={
 const operacionesForm = {
     iniciar: function(){
         //Mis variables
-        var username = document.getElementById("txtUser");
-        var email = document.getElementById("txtemail");
-        var password = document.getElementById("txtpassword");
+        let username = document.getElementById("txtUser");
+        let email = document.getElementById("txtemail");
+        let password = document.getElementById("txtpassword");
         var mensajeUsuario = document.getElementById("imgUsername");
         var mensajeCorreo = document.getElementById("imgEmail");
         var mensajePassword = document.getElementById("imgPassword");
         var rutaImg = "./media/";
         var boton = document.getElementById("btnAcceder");
-        //Desabilitar el boton 
-        boton.disabled = true;
+       
+        boton.disabled = true; //Desabilitar el boton 
         boton.style = "background:rgba(128, 125, 124, 0.7);";
 
         //Llamar a las funciones de validación
@@ -143,14 +157,12 @@ const operacionesForm = {
                     document.querySelector(".primerSpan").style.display = "block";
                     if(txtUsuario.value!==""){
                         let resultado =  operacionesForm.validar.validarUserName(txtUsuario,mensajeUsuario, rutaImg);
-                            //operacionesForm.validar.validarEmail();
-                        //  operacionesForm.validar.validarPassword();
                         console.log(resultado);
                         if(resultado){
-                            console.log("S|ngular: usuario valido!");
                             mensajeUsuario.src = rutaImg + "checked.png";
-                            operacionesForm.arrelgo.push(resultado);
-                        }                        
+                        }else{
+                            mensajeUsuario.src = rutaImg + "error.png";
+                        }                       
                     }else{
                         mensajeUsuario.src = rutaImg + "error.png";
                     }
@@ -163,17 +175,12 @@ const operacionesForm = {
                    document.querySelector(".segundoSpan").style.display = "block";
                    if(txtEmail.value!==""){
                         let resultado = operacionesForm.validar.validarEmail(txtemail,mensajeCorreo,rutaImg);
-                        // operacionesForm.validar.validarEmail();
-                        // operacionesForm.validar.validarPassword();
-                        console.log(resultado);
                         if(resultado){
                             mensajeCorreo.src = rutaImg + "checked.png";
-                            console.log("S|ngular: email valido!");
-                            operacionesForm.arrelgo.push(resultado);
                         }
-                   }else{
-                       mensajeCorreo.src = rutaImg + "error.png";
-                   }
+                        }else{
+                            mensajeCorreo.src = rutaImg + "error.png";
+                        }
                 }
             );
         },
@@ -186,43 +193,51 @@ const operacionesForm = {
                             console.log(resultado);
                             if(resultado){
                                 mensajePasswordm.src = rutaImg + "checked.png";
-                                console.log("S|ngular: password valida!");
-                                operacionesForm.arrelgo.push(resultado);
+                                operacionesForm.acceder();
                             }
                         }else{
                             mensajePasswordm.src = rutaImg + "error.png";
                         }
-                        operacionesForm.acceder();
                     }
             );
         }
     },
-    arrelgo: [],
     acceder: function(){
-            let arr = operacionesForm.arrelgo;
-            let contantador = 0;
-            for(let i=0; i < arr.length;i++){
-                if(arr[i]===true)
-                    contantador++;                
-            }
-            if(contantador===3){
-               //Acceder al boton
-               let boton = document.querySelector("#btnAcceder");
-               boton.style = "background:rgba(14, 209, 14, 0.7);"
-               boton.disabled = false;
-               boton.addEventListener("click", function(e){
-                   if(document.querySelector("#recordarDatos").checked && typeof(Storage) !== "undefined"){
-                        let datos_login = JSON.stringify({
-                                usuario: document.getElementById("txtUser").value,
-                                email: document.getElementById("txtemail").value,
-                                password: document.getElementById("txtpassword").value
-                        });
-                        localStorage.setItem("datos_login",datos_login);
-                    }
-                    content_bienvenida.show();
-               });
-            }
-            
+        let imguser = document.getElementById("imgUsername");
+        let imgemail = document.getElementById("imgEmail");
+        let imgpassword = document.getElementById("imgPassword");
+        let boton = document.querySelector("#btnAcceder");
+
+        imguser = imguser.src;
+        imguser = imguser.slice(-18);//.slice, comienza a recortar desde el final
+        imgemail = imgemail.src;
+        imgemail = imgemail.slice(-18);
+        imgpassword = imgpassword.src;
+        imgpassword=imgpassword.slice(-18);
+        correcto = "/media/checked.png";
+        incorrecto = "/media/error.png";
+        if(imguser == correcto && imgemail == correcto && imgpassword == correcto)
+        {
+            //Habilitar boton de accesso
+            boton.style = "background:rgba(14, 209, 14, 0.7);"
+            boton.disabled = false;
+            boton.addEventListener("click", function(e){
+                //Verficar si esta marcado el checkbutton
+                if(document.querySelector("#recordarDatos").checked && typeof(Storage) !== "undefined"){
+                    //Recordar datos de accesso
+                     let datos_login = JSON.stringify({
+                             usuario: document.getElementById("txtUser").value,
+                             email: document.getElementById("txtemail").value,
+                             password: document.getElementById("txtpassword").value
+                     });
+                     //Almacenar datos en localstorage
+                     localStorage.setItem("datos_login",datos_login);
+                }
+                 //MOstrar la Bienvenida
+                 content_bienvenida.show();
+            });
+        }
+
     }
 };
 
@@ -231,5 +246,12 @@ const content_bienvenida = {
         let bienvenido = document.querySelector(".bienvenida");
             document.querySelector(".article-form-login").style.display="none";
             bienvenido.style.display = "flex";
+            document.getElementById("txtUser").value = "";
+            document.getElementById("txtemail").value = "";
+            document.getElementById("txtpassword").value = "";
+            document.querySelector(".primerSpan").style.display = "none";
+            document.querySelector(".segundoSpan").style.display = "none";
+            document.querySelector(".tercerSpan").style.display = "none";
+            document.querySelector(".article-form-login").style.display="none";
     }
 };
